@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TruthScan AI</title>
+</head>
+
+<body style="font-family: Arial; text-align:center; background:#0f172a; color:white; padding:30px;">
+
+  <h1>🧠 TruthScan AI</h1>
+
+  <p>Paste chat message below</p>
+
+  <textarea id="text" style="width:80%; height:120px;"></textarea>
+  <br><br>
+
+  <button onclick="check()" style="padding:10px 20px;">Analyze</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    function check() {
+      let text = document.getElementById("text").value.toLowerCase();
+      let score = 80;
+
+      if (text.includes("sorry")) score -= 10;
+      if (text.includes("busy")) score -= 15;
+      if (text.includes("trust me")) score -= 20;
+      if (text.includes("later")) score -= 10;
+
+      let output = "";
+
+      if (score > 70) output = "Likely Truthful ✅";
+      else if (score > 40) output = "Suspicious 🤔";
+      else output = "Possible Lie 🚩";
+
+      document.getElementById("result").innerText =
+        "Score: " + score + "% | " + output;
+    }
+  </script>
+
+</body>
+</html>
